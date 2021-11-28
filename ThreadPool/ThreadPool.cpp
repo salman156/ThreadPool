@@ -2,7 +2,7 @@
 
 void thread_pool::worker_thread() {
 	while (!done) {
-		std::shared_ptr<function_wrapper> task = std::move(work_queue.try_pop());
+		std::shared_ptr<function_wrapper> task = work_queue.try_pop();
 		if (task) {
 			task.get()->operator()();
 		}

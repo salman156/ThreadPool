@@ -1,9 +1,7 @@
-﻿// ThreadPool.h : включаемый файл для стандартных системных включаемых файлов
-// или включаемые файлы для конкретного проекта.
-
-#pragma once
+﻿#pragma once
 #include "threadsafe_queue.h"
 #include "functionwrapper.h"
+#include <vector>
 #include <memory>
 #include <future>
 
@@ -18,7 +16,7 @@ public:
 	~thread_pool();
 	template<typename FunctionType>
 	std::future<typename std::result_of<FunctionType()>::type> submit(FunctionType f) {
-		using result_type = std::result_of<FunctionType()>::type;
+		using result_type = typename std::result_of<FunctionType()>::type;
 		using ptr_result_type = std::unique_ptr<result_type>;
 
 		std::packaged_task<ptr_result_type()> task(std::move(f));

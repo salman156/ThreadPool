@@ -3,6 +3,8 @@
 #include <vector>
 #include <mutex>
 #include <thread>
+
+//TODO: Requires fixes
 template<typename T>
 class threadsafe_queue {
 	std::vector<T*> arr;
