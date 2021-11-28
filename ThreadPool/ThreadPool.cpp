@@ -11,9 +11,7 @@ void thread_pool::worker_thread() {
 	}
 }
 
-thread_pool::thread_pool() : work_queue(), done(false) {
-
-	auto thread_count = std::thread::hardware_concurrency();
+thread_pool::thread_pool(std::size_t thread_count = std::thread::hardware_concurrency()):work_queue(), done(false) {
 
 	try {
 		for (auto i = 0u; i < thread_count; i++) {
